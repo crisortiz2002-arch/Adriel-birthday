@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Invitación – Fiesta de Príncipe</title>
+  <meta name="description" content="Invitación digital con cuenta regresiva para la fiesta" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f6faff;             /* fondo muy suave */
+      --card:#ffffff;            /* tarjetas */
+      --text:#0e1b2a;            /* texto principal */
+      --muted:#5b6b7b;           /* texto secundario */
+      --primary:#8ec5ff;         /* azul pastel */
+      --primary-2:#b7dbff;       /* azul más claro */
+      --gold:#d4af37;            /* dorado elegante */
+      --accent:#4b8bff;          /* azul acento */
+      --shadow: 0 10px 30px rgba(20,35,60,.12);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--text); background: radial-gradient(1200px 600px at 80% -100px, var(--primary-2), transparent 60%),
+                 radial-gradient(1000px 500px at -10% -120px, #e9f3ff, transparent 65%), var(--bg);
+    }
+    .wrap{ max-width:1000px; margin:0 auto; padding:32px 20px 60px; }
+    header{
+      display:grid; grid-template-columns: 1.1fr .9fr; gap:24px; align-items:center;
+    }
+    @media (max-width:900px){ header{ grid-template-columns:1fr; } }
+
+    .card{ background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); }
+
+    .hero{ padding:28px; position:relative; overflow:hidden; }
+    .hero:after{ /* destello dorado suave */
+      content:""; position:absolute; inset:-2px; pointer-events:none;
+      background: conic-gradient(from 210deg, rgba(212,175,55,.18), transparent 30%, transparent 70%, rgba(212,175,55,.15));
+      filter: blur(18px);
+    }
+    .title{ font-size: clamp(28px, 4vw, 44px); line-height:1.1; margin:0 0 8px; font-weight:700; }
+    .subtitle{ margin:0; color:var(--muted); font-weight:400; }
+
+    .badge{
+      display:inline-flex; align-items:center; gap:8px; margin-top:14px; padding:8px 12px; border-radius:999px;
+      background: linear-gradient(180deg, #fff, #f7fbff); border:1px solid #e7eef8; box-shadow: var(--shadow);
+      color:#334155; font-size:14px; font-weight:600;
+    }
+    .badge .dot{ width:10px; height:10px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(212,175,55,.18) }
+
+    .art{
+      aspect-ratio: 1 / 1; background: linear-gradient(180deg, #fff, #f5f9ff);
+      display:grid; place-items:center; border:1px solid #e9eef6; position:relative;
+    }
+    .art img{ width:100%; height:100%; object-fit:contain; }
+    .art .crown{ position:absolute; top:14px; right:14px; background:#fff; padding:6px 10px; border-radius:999px; border:1px solid #eee; font-size:12px; color:#7a8696 }
+
+    .info{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-top:18px; }
+    @media (max-width:700px){ .info{ grid-template-columns:1fr; } }
+
+    .info .item{ padding:16px; border:1px dashed #dfe7f2; border-radius:14px; background:linear-gradient(180deg,#fff, #f9fbff) }
+    .item b{ display:block; font-size:13px; color:#475569; text-transform:uppercase; letter-spacing:.06em }
+    .item span{ font-size:18px; font-weight:600 }
+
+    /* Countdown */
+    .countdown{ margin-top:26px; display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; }
+    @media (max-width:650px){ .countdown{ grid-template-columns: repeat(2, 1fr);} }
+    .tick{ text-align:center; padding:16px 10px; border-radius:16px; background:linear-gradient(180deg, #ffffff, #f6faff);
+           border:1px solid #e7eef8; box-shadow: var(--shadow); position:relative; isolation:isolate }
+    .tick .num{ font-size: clamp(28px, 5vw, 50px); font-weight:700; letter-spacing:.02em }
+    .tick .lbl{ font-size:12px; text-transform:uppercase; letter-spacing:.12em; color:#607089 }
+    .tick:before{ content:""; position:absolute; inset:0; border-radius:16px; padding:1px; background: linear-gradient(120deg, rgba(212,175,55,.6), rgba(142,197,255,.5)); -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude; opacity:.35 }
+
+    .cta{
+      margin-top:22px; display:flex; flex-wrap:wrap; gap:12px;
+    }
+    .btn{
+      appearance:none; border:0; background: linear-gradient(180deg, var(--primary), var(--accent)); color:#fff; padding:12px 18px; border-radius:12px; font-weight:700; cursor:pointer; box-shadow: var(--shadow);
+    }
+    .btn.secondary{ background: linear-gradient(180deg, #fff, #f7fbff); color:#0f172a; border:1px solid #e7eef8; font-weight:600 }
+
+    footer{ margin-top:36px; color:#6b7a8c; font-size:13px; text-align:center }
+    .gold{ color:var(--gold) }
+
+    /* Pequeña animación confeti */
+    canvas#confetti{ position:fixed; inset:0; pointer-events:none; z-index:50; }
+  </style>
+</head>
+<body>
+  <!--
+    ✨ Cómo personalizar (línea rápida):
+    1) Cambia los datos en CONFIG (abajo en el script): nombre, edad, fecha/hora, lugar, mensajes.
+    2) Reemplaza el src de la imagen por la caricatura de tu sobrino (PNG con fondo blanco/transparente).
+    3) Sube este archivo a cualquier hosting o envíalo por WhatsApp como link (GitHub Pages / Netlify / etc.).
+
+    Tip: también puedes pasar parámetros por URL, por ejemplo:
+    ?title=Cumple%20de%20Adriel&date=2025-10-05T15:00:00&place=Sal%C3%B3n%20Azul
+  -->
+
+  <canvas id="confetti"></canvas>
+
+  <div class="wrap">
+    <header class="card hero">
+      <div>
+        <h1 class="title">🎉 <span id="title">Fiesta de Príncipe</span></h1>
+        <p class="subtitle">¡Acompáñanos a celebrar este día especial! 👑✨</p>
+        <div class="badge"><span class="dot"></span> <span id="badge">Cuenta regresiva en vivo</span></div>
+
+        <div class="info">
+          <div class="item"><b>Fecha</b><span id="dateText">Dom 5 Oct 2025</span></div>
+          <div class="item"><b>Hora</b><span id="timeText">15:00</span></div>
+          <div class="item"><b>Lugar</b><span id="placeText">Salón Azul, Ciudad</span></div>
+        </div>
+
+        <div class="countdown" id="countdown">
+          <div class="tick"><div class="num" id="d">–</div><div class="lbl">Días</div></div>
+          <div class="tick"><div class="num" id="h">–</div><div class="lbl">Horas</div></div>
+          <div class="tick"><div class="num" id="m">–</div><div class="lbl">Minutos</div></div>
+          <div class="tick"><div class="num" id="s">–</div><div class="lbl">Segundos</div></div>
+        </div>
+
+        <div class="cta">
+          <button class="btn" id="btnAddCalendar">Agregar a mi calendario</button>
+          <button class="btn secondary" id="btnShare">Compartir invitación</button>
+        </div>
+      </div>
+      <div class="card art">
+        <!-- Reemplaza la ruta de la imagen por tu caricatura final: -->
+        <img id="heroImg" alt="Caricatura del príncipe" src="https://images.unsplash.com/photo-1522771930-78848d9293e8?q=80&w=1200&auto=format&fit=crop" />
+        <div class="crown">Azul pastel &nbsp;•&nbsp; Dorado</div>
+      </div>
+    </header>
+
+    <footer>
+      Hecho con cariño para la fiesta de <span class="gold" id="nameFooter">Adriel</span> · #CrownPrince
+    </footer>
+  </div>
+
+  <script>
+    // ==========================
+    // CONFIGURACIÓN RÁPIDA
+    // ==========================
+    const CONFIG = {
+      name: "Adriel",                // Nombre del cumpleañero
+      age: 2,                         // Edad (opcional, solo para el título si quieres)
+      title: "Fiesta de Príncipe",   // Título visible
+      // FECHA/HORA de la fiesta (interpreta HORA LOCAL del navegador)
+      dateISO: "2025-10-05T15:00:00", // ← Cambia aquí a tu fecha/hora
+      place: "Salón Azul, Ciudad",
+      details: "¡Trae tu mejor sonrisa y ganas de jugar!",
+      heroImage: "", // Opcional: pon aquí tu imagen .png/.jpg (si dejas vacío, se mantiene la de ejemplo)
+    };
+
+    // Parámetros por URL (opcionales): ?title=...&date=...&place=...&name=...&img=...
+    const url = new URL(location.href);
+    const qp = (k, fallback=null) => url.searchParams.get(k) ?? fallback;
+    if(qp('title')) CONFIG.title = qp('title');
+    if(qp('date')) CONFIG.dateISO = qp('date');
+    if(qp('place')) CONFIG.place = qp('place');
+    if(qp('name')) CONFIG.name = qp('name');
+    if(qp('img')) CONFIG.heroImage = qp('img');
+
+    // Pintar textos base
+    const $ = sel => document.querySelector(sel);
+    $("#title").textContent = CONFIG.title;
+    $("#nameFooter").textContent = CONFIG.name;
+    if(CONFIG.heroImage){ $("#heroImg").src = CONFIG.heroImage; }
+
+    // Formateo de fecha/hora en español
+    const target = new Date(CONFIG.dateISO);
+    const fmtDate = new Intl.DateTimeFormat('es-EC', { weekday:'short', day:'2-digit', month:'short', year:'numeric' });
+    const fmtTime = new Intl.DateTimeFormat('es-EC', { hour:'2-digit', minute:'2-digit' });
+    $("#dateText").textContent = fmtDate.format(target).replace(/\.$/,"");
+    $("#timeText").textContent = fmtTime.format(target);
+    $("#placeText").textContent = CONFIG.place;
+
+    // Countdown
+    const d = $("#d"), h = $("#h"), m = $("#m"), s = $("#s");
+    let ticking = true;
+    function update(){
+      const now = new Date();
+      let diff = target - now;
+      if(diff <= 0){ diff = 0; ticking = false; showStarted(); }
+      const sec = Math.floor(diff/1000)%60;
+      const min = Math.floor(diff/1000/60)%60;
+      const hr  = Math.floor(diff/1000/60/60)%24;
+      const day = Math.floor(diff/1000/60/60/24);
+      d.textContent = String(day);
+      h.textContent = String(hr).padStart(2,'0');
+      m.textContent = String(min).padStart(2,'0');
+      s.textContent = String(sec).padStart(2,'0');
+    }
+    update();
+    const iv = setInterval(()=>{ update(); if(!ticking) clearInterval(iv); }, 1000);
+
+    // Al iniciar el evento
+    function showStarted(){
+      $("#badge").textContent = "¡La fiesta ha comenzado!";
+      confettiBoom();
+    }
+
+    // Botón: Agregar a Google Calendar (usa hora local -> convierte a UTC para el link)
+    function toGCalDate(d){
+      // yyyymmddThhmmssZ en UTC
+      const pad = n => String(n).padStart(2,'0');
+      const y = d.getUTCFullYear();
+      const mo = pad(d.getUTCMonth()+1);
+      const da = pad(d.getUTCDate());
+      const hh = pad(d.getUTCHours());
+      const mi = pad(d.getUTCMinutes());
+      const ss = pad(d.getUTCSeconds());
+      return `${y}${mo}${da}T${hh}${mi}${ss}Z`;
+    }
+    $("#btnAddCalendar").addEventListener('click', ()=>{
+      const start = target;
+      const end = new Date(target.getTime() + 2*60*60*1000); // +2h por defecto
+      const url = new URL('https://calendar.google.com/calendar/render');
+      url.searchParams.set('action','TEMPLATE');
+      url.searchParams.set('text', `${CONFIG.title} – ${CONFIG.name}`);
+      url.searchParams.set('dates', `${toGCalDate(start)}/${toGCalDate(end)}`);
+      url.searchParams.set('details', CONFIG.details);
+      url.searchParams.set('location', CONFIG.place);
+      window.open(url.toString(), '_blank');
+    });
+
+    // Botón: Compartir invitación (Web Share API si soporta, sino copia enlace)
+    $("#btnShare").addEventListener('click', async ()=>{
+      const shareUrl = location.href;
+      const text = `${CONFIG.title} de ${CONFIG.name} – ${$("#dateText").textContent} ${$("#timeText").textContent} – ${CONFIG.place}`;
+      if(navigator.share){
+        try{ await navigator.share({ title: CONFIG.title, text, url: shareUrl }); }catch(e){ /* cancelado */ }
+      } else {
+        await navigator.clipboard.writeText(`${text} \n${shareUrl}`);
+        alert('¡Enlace copiado! Pégalo en WhatsApp o donde quieras.');
+      }
+    });
+
+    // Confeti simple (sin librerías)
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let W, H; function resize(){ W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+    addEventListener('resize', resize); resize();
+    const colors = ['#ffd166', '#f4978e', '#8ec5ff', '#06d6a0', '#d4af37'];
+    function confettiBoom(){
+      const parts = Array.from({length: 150}, ()=>({
+        x: Math.random()*W,
+        y: -20,
+        r: 6+Math.random()*6,
+        c: colors[Math.floor(Math.random()*colors.length)],
+        s: 2+Math.random()*3,
+        a: Math.random()*Math.PI*2,
+        w: 0.5+Math.random()*1.5
+      }));
+      let t=0; const dur=2500; const start=performance.now();
+      function step(now){
+        t = now-start; ctx.clearRect(0,0,W,H);
+        parts.forEach(p=>{ p.y+=p.s; p.x+=Math.sin((now/200)+p.a)*p.w; ctx.fillStyle=p.c; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); });
+        if(t<dur) requestAnimationFrame(step); else ctx.clearRect(0,0,W,H);
+      }
+      requestAnimationFrame(step);
+    }
+  </script>
+</body>
+</html>
