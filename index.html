@@ -220,16 +220,7 @@
       $("#badge").textContent = "¡La fiesta ha comenzado!";
       confettiBoom();
     }
-    //Botón google maps
-    <div class="cta">
-  <button class="btn" id="btnAddCalendar">Agregar a mi calendario</button>
-  <button class="btn secondary" id="btnShare">Compartir invitación</button>
-  <!-- 👇 Botón nuevo para ir a Google Maps -->
-  <a href="https://www.google.com/maps?q=-2.1461033821106,-79.8897247314453" 
-     target="_blank" class="btn">
-    Ver ubicación en Maps
-  </a>
-</div>
+   
     // Botón: Agregar a Google Calendar (hora local -> UTC)
     function toGCalDate(d){
       const pad = n => String(n).padStart(2,'0');
@@ -264,6 +255,7 @@
         alert('¡Enlace copiado! Pégalo en WhatsApp o donde quieras.');
       }
     });
+    
 
     // Confeti simple (sin librerías)
     const canvas = document.getElementById('confetti');
