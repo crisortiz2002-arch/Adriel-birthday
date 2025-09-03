@@ -39,5 +39,19 @@ header.card {
   font-size: 20px;                        /* un poco más grande */
   font-weight: 400;
 }
+  footer {
+  margin-top:36px;
+  color:#6b7a8c;
+  font-size:13px;
+  text-align:center;
+
+  /* 👇 nuevo estilo para que resalte */
+  background: linear-gradient(180deg, #fff, #f7fbff); /* fondo similar a los botones */
+  border:1px solid #e7eef8;                          /* borde fino */
+  border-radius: 12px;                               /* esquinas redondeadas */
+  padding: 12px 18px;                                /* espacio interno */
+  box-shadow: 0 6px 18px rgba(20,35,60,.12);         /* sombra */
+  display: inline-block;                             /* recuadro ajustado al texto */
+}
 }
 
