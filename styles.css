@@ -1,18 +1,24 @@
-body {
-  margin: 0;
-  font-family: "Oswald", sans-serif; /* ahora sí usará Oswald */
-  color: var(--text);
-  background-image: url("Salon.jpg"),
-                    radial-gradient(1200px 600px at 80% -100px, var(--primary-2), transparent 60%),
-                    radial-gradient(1000px 500px at -10% -120px, #e9f3ff, transparent 65%),
-                    var(--bg);
-  background-size: cover, auto, auto, auto;
-  background-attachment: fixed, scroll, scroll, scroll;
-  background-position: center, center, center, center;
-  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+/* body sin fondo */
+body{
+  margin:0;
+  font-family:"Oswald", sans-serif;
+  color:var(--text);
 }
 
-h1 {
-  font-family: "Bonheur Royale", cursive;
-  font-weight: 400;
+/* Contenedor que lleva el fondo y crece con el contenido */
+.page-bg{
+  min-height: 100%;
+  /* Imagen + degradados (se puede mantener tu mezcla) */
+  background-image:
+    url("Salon.jpg"),
+    radial-gradient(1200px 600px at 80% -100px, var(--primary-2), transparent 60%),
+    radial-gradient(1000px 500px at -10% -120px, #e9f3ff, transparent 65%),
+    linear-gradient(var(--bg), var(--bg));
+  background-size: cover, auto, auto, auto;
+  background-position: center, center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  /* Esto hace que el fondo acompañe el scroll */
+  background-attachment: scroll, scroll, scroll, scroll;
+  /* Asegura que ocupe todo el ancho y respete el alto del contenido */
+  width: 100%;
 }
