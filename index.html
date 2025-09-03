@@ -67,6 +67,23 @@
     .item b{ display:block; font-size:13px; color:#475569; text-transform:uppercase; letter-spacing:.06em }
     .item span{ font-size:18px; font-weight:600 }
 
+    body{
+  margin:0;
+  font-family: "Oswald", sans-serif;  /* o Bonheur Royale para títulos */
+  color:var(--text);
+
+  /* 👇 Aquí mezclamos imagen + degradados */
+  background-image:
+    url("castillo.jpg"), /* tu imagen */
+    radial-gradient(1200px 600px at 80% -100px, var(--primary-2), transparent 60%),
+    radial-gradient(1000px 500px at -10% -120px, #e9f3ff, transparent 65%),
+    var(--bg);
+
+  background-size: cover, auto, auto, auto; 
+  background-attachment: fixed, scroll, scroll, scroll;
+  background-position: center, center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+}
     /* Countdown */
     .countdown{ margin-top:26px; display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; }
     @media (max-width:650px){ .countdown{ grid-template-columns: repeat(2, 1fr);} }
