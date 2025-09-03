@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: "Oswald", sans-serif;
-  background-image: url("castillo.jpg"); /* tu imagen de fondo */
+  background-image: url("Castillo.jpg"); /* tu imagen de fondo */
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
