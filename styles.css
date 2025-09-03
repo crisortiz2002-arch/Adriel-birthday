@@ -21,5 +21,19 @@ body{
   background-attachment: scroll, scroll, scroll, scroll;
   /* Asegura que ocupe todo el ancho y respete el alto del contenido */
   width: 100%;
+  /* Estilos para los recuadros (tarjetas) */
+.card {
+  background: #B7DBFF;     /* color de fondo (puedes cambiarlo) */
+  border-radius: 18px;     /* esquinas redondeadas */
+  box-shadow: 0 10px 30px rgba(20,35,60,.12); /* sombra elegante */
+  padding: 20px;           /* espacio interior */
+}
+
+/* Opción: solo el header grande */
+header.card {
+  background: rgba(255,255,255,0.85); /* blanco translúcido */
+  backdrop-filter: blur(10px);        /* efecto vidrio esmerilado */
+}
+
 }
 
