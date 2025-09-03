@@ -1,6 +1,11 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  /*font-family: Arial, sans-serif;*/
+  .oswald-<uniquifier> {
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
   background-image: url("Castillo.jpg");
   background-size: cover;
   background-attachment: fixed;
