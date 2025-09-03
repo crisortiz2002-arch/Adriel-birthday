@@ -1,9 +1,18 @@
 body {
   margin: 0;
-  font-family: "Oswald", sans-serif;
-  background-image: url("Castillo.jpg"); /* tu imagen de fondo */
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
+  font-family: "Oswald", sans-serif; /* ahora sí usará Oswald */
+  color: var(--text);
+  background-image: url("castillo.jpg"),
+                    radial-gradient(1200px 600px at 80% -100px, var(--primary-2), transparent 60%),
+                    radial-gradient(1000px 500px at -10% -120px, #e9f3ff, transparent 65%),
+                    var(--bg);
+  background-size: cover, auto, auto, auto;
+  background-attachment: fixed, scroll, scroll, scroll;
+  background-position: center, center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+}
+
+h1 {
+  font-family: "Bonheur Royale", cursive;
+  font-weight: 400;
 }
