@@ -53,5 +53,15 @@ header.card {
   box-shadow: 0 6px 18px rgba(20,35,60,.12);         /* sombra */
   display: inline-block;                             /* recuadro ajustado al texto */
 }
+.footer-box {
+  border: 2px dashed rgba(255,255,255,.7); /* borde tipo recuadro */
+  background: rgba(255,255,255,.25);       /* fondo translúcido */
+  border-radius: 1.25rem;                  /* esquinas redondeadas */
+  padding: 16px;
+  text-align: center;
+  font-weight: 600;
+  backdrop-filter: blur(6px);              /* efecto vidrio */
+  box-shadow: 0 10px 30px rgba(0,0,0,.15); /* sombrita */
+}
 }
 
