@@ -27,7 +27,7 @@
     *{box-sizing:border-box}
     html,body{height:100%}
 
-    /* ✅ ÚNICA regla body (imagen + degradados) */
+    /* ÚNICA regla body (imagen + degradados) */
     body{
       margin:0;
       font-family:"Oswald", sans-serif; /* fuente global */
@@ -60,7 +60,7 @@
       filter: blur(18px);
     }
 
-    /* ✅ Títulos con Bonheur Royale */
+    /* Títulos con Bonheur Royale */
     .title{
       font-family:"Bonheur Royale", cursive;
       font-weight:400;
@@ -114,13 +114,7 @@
   </style>
 </head>
 <body>
-  <!--
-    ✨ Personaliza rápido:
-    1) Edita CONFIG (abajo): name, title, dateISO, place, details.
-    2) Reemplaza la imagen de <img id="heroImg"> por tu caricatura (PNG/JPG).
-    3) Asegúrate de que castillo.jpg esté en la misma carpeta (o cambia la ruta).
-  -->
-
+  <!-- Personaliza rápido: cambia CONFIG abajo -->
   <canvas id="confetti"></canvas>
 
   <div class="wrap">
@@ -148,11 +142,20 @@
           <button class="btn secondary" id="btnShare">Compartir invitación</button>
         </div>
       </div>
+
       <div class="card art">
-        <!-- Reemplaza la ruta de la imagen por tu caricatura final: -->
+        <!-- Imagen del príncipe -->
         <img id="heroImg" alt="Caricatura del príncipe" src="./Adriel.png" />
       </div>
     </header>
+
+    <!-- Botón al final de la invitación -->
+    <div class="cta" style="justify-content:center; margin-top:24px;">
+      <a href="https://www.google.com/maps?q=-2.1461033821106,-79.8897247314453"
+         target="_blank" rel="noopener noreferrer" class="btn">
+        📍 Ver ubicación en Maps
+      </a>
+    </div>
 
     <footer>
       Hecho con cariño para la fiesta de <span class="gold" id="nameFooter">Adriel</span> · #CrownPrince
@@ -220,7 +223,7 @@
       $("#badge").textContent = "¡La fiesta ha comenzado!";
       confettiBoom();
     }
-   
+
     // Botón: Agregar a Google Calendar (hora local -> UTC)
     function toGCalDate(d){
       const pad = n => String(n).padStart(2,'0');
@@ -255,7 +258,7 @@
         alert('¡Enlace copiado! Pégalo en WhatsApp o donde quieras.');
       }
     });
-    
+
     // Confeti simple (sin librerías)
     const canvas = document.getElementById('confetti');
     const ctx = canvas.getContext('2d');
@@ -280,17 +283,7 @@
       }
       requestAnimationFrame(step);
     }
-    <!-- 👇 Botón al final de la invitación -->
-<div class="cta" style="justify-content:center; margin-top:24px;">
-  <a href="https://www.google.com/maps?q=-2.1461033821106,-79.8897247314453"
-     target="_blank" rel="noopener noreferrer" class="btn">
-    📍 Ver ubicación en Maps
-  </a>
-</div>
-
-<footer>
-  Hecho con cariño para la fiesta de <span class="gold" id="nameFooter">Adriel</span> · #CrownPrince
-</footer>
   </script>
 </body>
 </html>
+
