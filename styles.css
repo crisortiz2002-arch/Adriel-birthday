@@ -34,6 +34,10 @@ header.card {
   background: rgba(255,255,255,0.85); /* blanco translúcido */
   backdrop-filter: blur(10px);        /* efecto vidrio esmerilado */
 }
-
+.btn {
+  font-family: "Bonheur Royale", cursive; /* letra elegante */
+  font-size: 20px;                        /* un poco más grande */
+  font-weight: 400;
+}
 }
 
