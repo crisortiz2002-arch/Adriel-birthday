@@ -1,287 +1,352 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Invitación – Fiesta de Príncipe</title>
-  <meta name="description" content="Invitación digital con cuenta regresiva para la fiesta" />
+  <title>Invitación • Cumple de Adriel</title>
 
-  <!-- Fuentes -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <!-- Metadatos sociales -->
+  <meta property="og:title" content="¡Te invito a mi cumple!" />
+  <meta property="og:description" content="Acompáñame a celebrar. Confirma y guarda la fecha." />
+  <meta property="og:image" content="img/preview.jpg" /> <!-- TODO: cambia con tu preview -->
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#2b6cb0" />
 
   <style>
     :root{
-      --bg:#f6faff;
-      --card:#ffffff;
-      --text:#0e1b2a;
-      --muted:#5b6b7b;
-      --primary:#8ec5ff;
-      --primary-2:#b7dbff;
-      --gold:#d4af37;
-      --accent:#4b8bff;
-      --shadow: 0 10px 30px rgba(20,35,60,.12);
-      --radius: 18px;
+      --accent: #2b6cb0;          /* azul pastel-acentuado */
+      --accent-2: #c6a136;        /* dorado suave */
+      --text: #0f172a;            /* slate-900 */
+      --soft: rgba(255,255,255,.85);
+      --card-bg: rgba(255,255,255,.75);
+      --card-stroke: rgba(255,255,255,.55);
+      --btn-grad-a: #3b82f6;
+      --btn-grad-b: #2563eb;
+      --radius-2xl: 1.25rem;
+      --shadow: 0 10px 30px rgba(0,0,0,.15);
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
 
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
     body{
       margin:0;
-      font-family:"Oswald", sans-serif;
-      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: hidden;
+      background:#0b1020;
     }
 
+    /* Fondo con imagen + degradados que acompañan el scroll */
     .page-bg{
-      min-height: 100%;
-      background-image:
-        url("Salon.jpg"),
-        radial-gradient(1200px 600px at 80% -100px, var(--primary-2), transparent 60%),
-        radial-gradient(1000px 500px at -10% -120px, #e9f3ff, transparent 65%),
-        linear-gradient(var(--bg), var(--bg));
-      background-size: cover, auto, auto, auto;
-      background-position: center, center, center, center;
-      background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
-      background-attachment: scroll, scroll, scroll, scroll;
-      width: 100%;
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(198,161,54,.25), transparent 60%),
+        radial-gradient(1000px 800px at -10% 110%, rgba(43,108,176,.25), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.35) 70%),
+        url("img/bg@2x.webp"); /* TODO: tu imagen en alta resolución */
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      filter: saturate(1.05) contrast(1.02);
     }
 
-    .wrap{ max-width:1000px; margin:0 auto; padding:32px 20px 60px; }
-    header{ display:grid; grid-template-columns: 1.1fr .9fr; gap:24px; align-items:center; }
-    @media (max-width:900px){ header{ grid-template-columns:1fr; } }
+    /* Contenedor principal */
+    .wrap{
+      max-width: 960px;
+      margin: 0 auto;
+      padding: clamp(16px, 3vw, 32px);
+    }
 
-    .card{ background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); }
-    .hero{ padding:28px; position:relative; overflow:hidden; }
-    .hero:after{
-      content:""; position:absolute; inset:-2px; pointer-events:none;
-      background: conic-gradient(from 210deg, rgba(212,175,55,.18), transparent 30%, transparent 70%, rgba(212,175,55,.15));
-      filter: blur(18px);
+    header.hero{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-top: clamp(24px, 5vw, 48px);
+      align-items: center;
+    }
+    @media (min-width: 820px){
+      header.hero{
+        grid-template-columns: .9fr 1.1fr;
+        gap: 28px;
+      }
+    }
+
+    .card{
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--card-stroke);
+      border-radius: var(--radius-2xl);
+      box-shadow: var(--shadow);
+      padding: clamp(16px, 2.5vw, 28px);
     }
 
     .title{
-      font-family:"Bonheur Royale", cursive;
-      font-weight:400;
-      font-size: clamp(38px, 6vw, 64px);
-      line-height:1.05; margin:0 0 8px;
-      color:#1b1f2a;
-      text-shadow: 0 2px 20px rgba(255,255,255,.35);
+      font-size: clamp(28px, 5vw, 44px);
+      margin: 0 0 6px;
+      font-weight: 800;
+      letter-spacing: .2px;
     }
-    .subtitle{ margin:0; color:var(--muted); font-weight:400; font-size: clamp(14px, 2.2vw, 18px); }
+    .subtitle{
+      margin: 0 0 14px;
+      font-size: clamp(16px, 2.2vw, 18px);
+      opacity: .9;
+    }
 
-    .badge{
-      display:inline-flex; align-items:center; gap:8px; margin-top:14px; padding:8px 12px; border-radius:999px;
-      background: linear-gradient(180deg, #fff, #f7fbff);
-      border:1px solid #e7eef8;
+    .avatar{
+      width: 100%;
+      aspect-ratio: 1.1 / 1;
+      object-fit: contain;
+      display: block;
+      background: rgba(255,255,255,.6);
+      border-radius: var(--radius-2xl);
+      border: 1px solid var(--card-stroke);
       box-shadow: var(--shadow);
-      color:#334155; font-size:14px; font-weight:600;
     }
-    .badge .dot{ width:10px; height:10px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(212,175,55,.18) }
 
-    .art{ aspect-ratio: 1 / 1; background: linear-gradient(180deg, #fff, #f5f9ff);
-      display:grid; place-items:center; border:1px solid #e9eef6; position:relative; }
-    .art img{ width:100%; height:100%; object-fit:contain; }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.85);
+      border:1px solid var(--card-stroke);
+      font-weight:600;
+      margin-bottom: 10px;
+    }
+    .pill small{ opacity:.8 }
 
-    .info{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-top:18px; }
-    @media (max-width:700px){ .info{ grid-template-columns:1fr; } }
-    .info .item{ padding:16px; border:1px dashed #dfe7f2; border-radius:14px; background:linear-gradient(180deg,#fff, #f9fbff) }
-    .item b{ display:block; font-size:13px; color:#475569; text-transform:uppercase; letter-spacing:.06em }
-    .item span{ font-size:18px; font-weight:600 }
+    /* Contador */
+    .countdown{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 14px 0 6px;
+    }
+    .timebox{
+      background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.7));
+      border:1px solid var(--card-stroke);
+      border-radius: 14px;
+      text-align:center;
+      padding: 12px 10px;
+      box-shadow: var(--shadow);
+    }
+    .timebox .num{
+      font-size: clamp(22px, 4.5vw, 34px);
+      font-weight: 800;
+      line-height: 1.1;
+    }
+    .timebox .label{
+      font-size: 12px;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      opacity:.8;
+    }
 
-    .countdown{ margin-top:26px; display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; }
-    @media (max-width:650px){ .countdown{ grid-template-columns: repeat(2, 1fr);} }
-    .tick{ text-align:center; padding:16px 10px; border-radius:16px; background:linear-gradient(180deg, #ffffff, #f6faff);
-           border:1px solid #e7eef8; box-shadow: var(--shadow); position:relative; isolation:isolate }
-    .tick .num{ font-size: clamp(28px, 5vw, 50px); font-weight:700; letter-spacing:.02em }
-    .tick .lbl{ font-size:12px; text-transform:uppercase; letter-spacing:.12em; color:#607089 }
+    /* Botones */
+    .actions{
+      display:flex; flex-wrap:wrap; gap: 10px; margin-top: 14px;
+    }
+    .btn{
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-weight: 700;
+      letter-spacing:.2px;
+      color: white;
+      background: linear-gradient(135deg, var(--btn-grad-a), var(--btn-grad-b));
+      box-shadow: var(--shadow);
+      transition: transform .15s ease, filter .2s ease;
+      text-decoration: none;
+      display: inline-flex; align-items:center; gap:8px;
+    }
+    .btn:focus-visible{ outline: 3px solid rgba(37,99,235,.45); outline-offset: 3px; }
+    .btn:hover{ transform: translateY(-2px); filter: brightness(1.03); }
+    .btn--ghost{
+      background: rgba(255,255,255,.2);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.35);
+    }
 
-    .cta{ margin-top:22px; display:flex; flex-wrap:wrap; gap:12px; }
-    .btn{ appearance:none; border:0; background: linear-gradient(180deg, var(--primary), var(--accent)); color:#fff; padding:12px 18px; border-radius:12px; font-weight:700; cursor:pointer; box-shadow: var(--shadow); }
-    .btn.secondary{ background: linear-gradient(180deg, #fff, #f7fbff); color:#0f172a; border:1px solid #e7eef8; font-weight:600 }
+    /* Footer tipo botón */
+    footer{
+      margin: 36px auto 28px;
+      max-width: 960px;
+      padding: 0 clamp(16px, 3vw, 32px);
+    }
+    .footer-box{
+      border-radius: var(--radius-2xl);
+      border: 2px dashed rgba(255,255,255,.7);
+      background: rgba(255,255,255,.25);
+      color: #0b1020;
+      padding: 16px;
+      text-align:center;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(6px);
+      font-weight: 600;
+    }
+    .footer-box em{ color: var(--accent-2); font-style: normal; }
 
-    footer{ margin-top:36px; color:#6b7a8c; font-size:13px; text-align:center }
-    .gold{ color:var(--gold) }
-
-    canvas#confetti{ position:fixed; inset:0; pointer-events:none; z-index:50; }
+    /* Accesibilidad: respeta reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      .btn{ transition: none; }
+      .btn:hover{ transform:none; }
+    }
   </style>
 </head>
 <body>
-  <div class="page-bg">
-    <canvas id="confetti"></canvas>
+  <div class="page-bg" aria-hidden="true"></div>
 
-    <div class="wrap">
-      <header class="card hero">
-        <div>
-          <h1 class="title">🎉 <span id="title">Fiesta de Príncipe Adriel</span></h1>
-          <p class="subtitle">¡Acompáñanos a celebrar este día especial! 👑✨</p>
-          <div class="badge"><span class="dot"></span> <span id="badge">Cuenta regresiva en vivo</span></div>
+  <main class="wrap">
+    <header class="hero">
+      <img class="avatar" src="img/caricatura-adriel@2x.webp" alt="Caricatura de Adriel sonriendo" />
+      <section class="card">
+        <div class="pill">🎉 <small>¡Estás invitado!</small></div>
+        <h1 class="title">Cumpleaños de Adriel</h1>
+        <p class="subtitle">
+          Ven a celebrar con nosotros. Habrá juegos, pastel y muchas sorpresas.  
+          <strong>¡No faltes!</strong>
+        </p>
 
-          <div class="info">
-            <div class="item"><b>Fecha</b><span id="dateText">Viernes 19 de septiembre 2025</span></div>
-            <div class="item"><b>Hora</b><span id="timeText">15:00</span></div>
-            <div class="item"><b>Lugar</b><span id="placeText">Salón Azul, Guayaquil</span></div>
-          </div>
+        <!-- Lugar y fecha -->
+        <p class="subtitle">
+          📍 <strong>Dirección:</strong> <span id="venue-text">Conjunto Los Álamos, Salón Comunal</span><br/>
+          🗓️ <strong>Fecha y hora:</strong> <span id="datetime-text">Sábado 20 de Septiembre, 16:00</span>
+        </p>
 
-          <div class="countdown" id="countdown">
-            <div class="tick"><div class="num" id="d">–</div><div class="lbl">Días</div></div>
-            <div class="tick"><div class="num" id="h">–</div><div class="lbl">Horas</div></div>
-            <div class="tick"><div class="num" id="m">–</div><div class="lbl">Minutos</div></div>
-            <div class="tick"><div class="num" id="s">–</div><div class="lbl">Segundos</div></div>
-          </div>
-
-          <div class="cta">
-            <button class="btn" id="btnAddCalendar">Agregar a mi calendario</button>
-            <button class="btn secondary" id="btnShare">Compartir invitación</button>
-          </div>
+        <!-- Contador -->
+        <div class="countdown" aria-live="polite">
+          <div class="timebox"><div class="num" id="dd">--</div><div class="label">Días</div></div>
+          <div class="timebox"><div class="num" id="hh">--</div><div class="label">Horas</div></div>
+          <div class="timebox"><div class="num" id="mm">--</div><div class="label">Min</div></div>
+          <div class="timebox"><div class="num" id="ss">--</div><div class="label">Seg</div></div>
         </div>
 
-        <div class="card art">
-          <img id="heroImg" alt="Caricatura del príncipe" src="./Adriel.png" />
+        <!-- Botones -->
+        <div class="actions">
+          <a id="btn-calendar" class="btn" href="#" target="_blank" rel="noopener">📅 Agregar a Google Calendar</a>
+          <a id="btn-maps" class="btn btn--ghost" href="#" target="_blank" rel="noopener">📍 Ver en Maps</a>
+          <button id="btn-share" class="btn">🔗 Compartir invitación</button>
         </div>
-      </header>
+      </section>
+    </header>
 
-      <div class="cta" style="justify-content:center; margin-top:24px;">
-        <a href="https://www.google.com/maps?q=-2.1461033821106,-79.8897247314453"
-           target="_blank" rel="noopener noreferrer" class="btn">
-          📍 Ver ubicación en Maps
-        </a>
-      </div>
+    <!-- Texto adicional (opcional) -->
+    <section class="card" style="margin-top:16px">
+      <h2 style="margin:0 0 8px; font-size:clamp(20px,3vw,26px)">Detalles</h2>
+      <ul style="margin:0; padding-left:18px">
+        <li>Lleva ropa cómoda.</li>
+        <li>Si deseas, trae un juego de mesa para compartir.</li>
+        <li>Confirmar asistencia por WhatsApp: <a href="https://wa.me/593999999999">+593 99 999 9999</a></li> <!-- TODO -->
+      </ul>
+    </section>
+  </main>
 
-      <footer>
-        Hecho con cariño para la fiesta de <span class="gold" id="nameFooter">Adriel</span> · #CrownPrince
-      </footer>
+  <footer>
+    <div class="footer-box">
+      💙 Gracias por ser parte de este día especial. <em>¡Nos vemos en la fiesta!</em>
     </div>
-  </div>
+  </footer>
 
   <script>
-    /* ==========================
-       CONFIG
-    ========================== */
-    const CONFIG = {
-      name: "Adriel",
-      title: "El príncipe Adriel está cumpliendo años",
-      dateISO: "2025-09-19T15:00:00",
-      place: "Aquatic Zone, Cdla. La Garzota, Mz 70, solares 22-23",
-      details: "¡Trae tu mejor sonrisa y ganas de jugar!",
-      heroImage: "",
+    // ====== CONFIG (TODO: ajusta estos valores) ======
+    const EVENT = {
+      title: "Cumpleaños de Adriel",
+      // Importante: Usa la zona local del público; Guayaquil = America/Guayaquil (UTC-5)
+      // Formato ISO local: "2025-09-20T16:00:00"
+      startLocal: "2025-09-20T16:00:00",   // TODO
+      endLocal:   "2025-09-20T19:00:00",   // TODO
+      location: "Conjunto Los Álamos, Salón Comunal, Guayaquil", // TODO
+      details: "Acompáñanos a celebrar el cumple de Adriel. Juegos, pastel y sorpresas.",
+      mapsQuery: "Conjunto Los Álamos, Salón Comunal, Guayaquil" // para Google Maps
     };
 
-    const $ = sel => document.querySelector(sel);
+    // ====== Utilidades ======
+    const pad = (n) => String(n).padStart(2,'0');
+    const toGoogleDate = (isoLocal) => {
+      // Convierte "YYYY-MM-DDTHH:mm:ss" local a formato UTC y cadena yyyymmddThhmmssZ para Google Calendar
+      const dt = new Date(isoLocal);
+      const y = dt.getUTCFullYear();
+      const m = pad(dt.getUTCMonth()+1);
+      const d = pad(dt.getUTCDate());
+      const hh = pad(dt.getUTCHours());
+      const mm = pad(dt.getUTCMinutes());
+      const ss = pad(dt.getUTCSeconds());
+      return `${y}${m}${d}T${hh}${mm}${ss}Z`;
+    };
 
-    // Textos base
-    $("#title").textContent = CONFIG.title;
-    $("#nameFooter").textContent = CONFIG.name;
-    if(CONFIG.heroImage){ $("#heroImg").src = CONFIG.heroImage; }
+    // ====== Enlaces dinámicos ======
+    const startGC = toGoogleDate(EVENT.startLocal);
+    const endGC   = toGoogleDate(EVENT.endLocal);
+    const calURL = new URL("https://calendar.google.com/calendar/render");
+    calURL.searchParams.set("action", "TEMPLATE");
+    calURL.searchParams.set("text", EVENT.title);
+    calURL.searchParams.set("dates", `${startGC}/${endGC}`);
+    calURL.searchParams.set("location", EVENT.location);
+    calURL.searchParams.set("details", EVENT.details);
 
-    // Fecha
-    const target = new Date(CONFIG.dateISO);
-    const fmtDate = new Intl.DateTimeFormat('es-EC', { weekday:'short', day:'2-digit', month:'short', year:'numeric' });
-    const fmtTime = new Intl.DateTimeFormat('es-EC', { hour:'2-digit', minute:'2-digit' });
-    $("#dateText").textContent = fmtDate.format(target).replace(/\.$/,"");
-    $("#timeText").textContent = fmtTime.format(target);
-    $("#placeText").textContent = CONFIG.place;
+    const mapsURL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(EVENT.mapsQuery)}`;
 
-    /* ==========================
-       COUNTDOWN
-    ========================== */
-    const d = $("#d"), h = $("#h"), m = $("#m"), s = $("#s");
-    let ticking = true;
+    document.getElementById("btn-calendar").href = calURL.toString();
+    document.getElementById("btn-maps").href = mapsURL;
 
-    function update(){
-      const now = new Date();
-      let diff = target - now;
-      if(diff <= 0){
-        diff = 0;
-        if (ticking) showStarted();
-        ticking = false;
-      }
-      const sec = Math.floor(diff/1000)%60;
-      const min = Math.floor(diff/1000/60)%60;
-      const hr  = Math.floor(diff/1000/60/60)%24;
-      const day = Math.floor(diff/1000/60/60/24);
-
-      d.textContent = String(day);
-      h.textContent = String(hr).padStart(2,'0');
-      m.textContent = String(min).padStart(2,'0');
-      s.textContent = String(sec).padStart(2,'0');
-    }
-
-    update();
-    const iv = setInterval(()=>{ update(); if(!ticking) clearInterval(iv); }, 1000);
-
-    function showStarted(){
-      $("#badge").textContent = "¡La fiesta ha comenzado!";
-      confettiBoom();
-    }
-
-    /* ==========================
-       GOOGLE CALENDAR
-    ========================== */
-    function toGCalDate(d){
-      const pad = n => String(n).padStart(2,'0');
-      return `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}T${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}${pad(d.getUTCSeconds())}Z`;
-    }
-
-    $("#btnAddCalendar").addEventListener('click', ()=>{
-      const start = target;
-      const end = new Date(target.getTime() + 2*60*60*1000);
-      const u = new URL('https://calendar.google.com/calendar/render');
-      u.searchParams.set('action','TEMPLATE');
-      u.searchParams.set('text', `${CONFIG.title} – ${CONFIG.name}`);
-      u.searchParams.set('dates', `${toGCalDate(start)}/${toGCalDate(end)}`);
-      u.searchParams.set('details', CONFIG.details);
-      u.searchParams.set('location', CONFIG.place);
-      window.open(u.toString(), '_blank');
-    });
-
-    /* ==========================
-       COMPARTIR
-    ========================== */
-    $("#btnShare").addEventListener('click', async ()=>{
-      const shareUrl = location.href;
-      const text = `${CONFIG.title} de ${CONFIG.name} – ${$("#dateText").textContent} ${$("#timeText").textContent} – ${CONFIG.place}`;
-      if(navigator.share){
-        try{ await navigator.share({ title: CONFIG.title, text, url: shareUrl }); }catch(e){}
+    // ====== Compartir (Web Share API con fallback) ======
+    const shareBtn = document.getElementById("btn-share");
+    shareBtn.addEventListener("click", async () => {
+      const shareData = {
+        title: EVENT.title,
+        text: "¡Acompáñanos a celebrar! Guarda la fecha y mira la ubicación:",
+        url: window.location.href
+      };
+      if (navigator.share) {
+        try { await navigator.share(shareData); }
+        catch(e){ /* cancelado */ }
       } else {
-        await navigator.clipboard.writeText(`${text}\n${shareUrl}`);
-        alert('¡Enlace copiado! Pégalo en WhatsApp o donde quieras.');
+        // Fallback: copia enlace
+        try{
+          await navigator.clipboard.writeText(shareData.url);
+          shareBtn.textContent = "✅ Enlace copiado";
+          setTimeout(()=> shareBtn.textContent = "🔗 Compartir invitación", 1800);
+        }catch(e){
+          alert("Copia este enlace para compartir: " + shareData.url);
+        }
       }
     });
 
-    /* ==========================
-       CONFETI
-    ========================== */
-    const canvas = document.getElementById('confetti');
-    const ctx = canvas.getContext('2d');
-    function resize(){ canvas.width = innerWidth; canvas.height = innerHeight; }
-    addEventListener('resize', resize); resize();
+    // ====== Contador regresivo ======
+    const dd = document.getElementById("dd");
+    const hh = document.getElementById("hh");
+    const mm = document.getElementById("mm");
+    const ss = document.getElementById("ss");
 
-    const colors = ['#ffd166', '#f4978e', '#8ec5ff', '#06d6a0', '#d4af37'];
-    function confettiBoom(){
-      const parts = Array.from({length: 150}, ()=>({
-        x: Math.random()*innerWidth,
-        y: -20,
-        r: 6+Math.random()*6,
-        c: colors[Math.floor(Math.random()*colors.length)],
-        s: 2+Math.random()*3,
-        a: Math.random()*Math.PI*2,
-        w: 0.5+Math.random()*1.5
-      }));
-      let start=performance.now();
-      function step(now){
-        const t = now-start;
-        ctx.clearRect(0,0,innerWidth,innerHeight);
-        parts.forEach(p=>{
-          p.y+=p.s;
-          p.x+=Math.sin((now/200)+p.a)*p.w;
-          ctx.fillStyle=p.c;
-          ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
-        });
-        if(t<2500) requestAnimationFrame(step);
-        else ctx.clearRect(0,0,innerWidth,innerHeight);
+    function tick(){
+      const now = new Date();
+      const target = new Date(EVENT.startLocal);
+      const diff = target - now;
+      if (diff <= 0){
+        dd.textContent = "00"; hh.textContent = "00"; mm.textContent = "00"; ss.textContent = "00";
+        return;
       }
-      requestAnimationFrame(step);
+      const d = Math.floor(diff / (1000*60*60*24));
+      const h = Math.floor((diff / (1000*60*60)) % 24);
+      const m = Math.floor((diff / (1000*60)) % 60);
+      const s = Math.floor((diff / 1000) % 60);
+      dd.textContent = pad(d);
+      hh.textContent = pad(h);
+      mm.textContent = pad(m);
+      ss.textContent = pad(s);
     }
+    tick();
+    setInterval(tick, 1000);
+
+    // ====== Mejora de rendimiento percibido: precarga de imagen ======
+    // Si cargas webp/jpg grande, esto evita parpadeo al pintar el fondo
+    const bg = new Image();
+    bg.src = "img/bg@2x.webp"; // TODO: mismo path que en CSS
+    bg.fetchPriority = "high";
   </script>
 </body>
 </html>
