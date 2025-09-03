@@ -2,7 +2,7 @@ body {
   margin: 0;
   font-family: "Oswald", sans-serif; /* ahora sí usará Oswald */
   color: var(--text);
-  background-image: url("castillo.jpg"),
+  background-image: url("Castillo.jpg"),
                     radial-gradient(1200px 600px at 80% -100px, var(--primary-2), transparent 60%),
                     radial-gradient(1000px 500px at -10% -120px, #e9f3ff, transparent 65%),
                     var(--bg);
