@@ -33,18 +33,20 @@
       font-family:"Oswald", sans-serif; /* fuente global */
       color:var(--text);
 
-      /* Imagen de fondo + degradados superpuestos */
-      background-image:
-        url("Salon.jpg"), /* <- cambia el nombre si tu archivo es otro */
-        radial-gradient(1200px 600px at 80% -100px, var(--primary-2), transparent 60%),
-        radial-gradient(1000px 500px at -10% -120px, #e9f3ff, transparent 65%),
-        linear-gradient(var(--bg), var(--bg));
-      background-size: cover, auto, auto, auto;
-      background-attachment: fixed, scroll, scroll, scroll;
-      background-position: center, center, center, center;
-      background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+
     }
 
+    .bg {
+  position: absolute; /* cubre todo */
+  inset: 0;
+  z-index: -1; /* detrás del contenido */
+}
+
+.bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* que la imagen cubra todo */
+}
     .wrap{ max-width:1000px; margin:0 auto; padding:32px 20px 60px; }
     header{
       display:grid; grid-template-columns: 1.1fr .9fr; gap:24px; align-items:center;
@@ -118,6 +120,14 @@
   <canvas id="confetti"></canvas>
 
   <div class="wrap">
+    <!-- Fondo que cubre todo el scroll -->
+<div class="bg">
+  <img src="Salon.jpg" alt="Fondo de la invitación">
+</div>
+
+<div class="wrap">
+  <!-- aquí todo tu contenido -->
+</div>
     <header class="card hero">
       <div>
         <h1 class="title">🎉 <span id="title">Fiesta de Príncipe Adriel</span></h1>
