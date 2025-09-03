@@ -1,17 +1,19 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css"><!-- opcional si usas un CSS externo -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Invitación – Fiesta de Príncipe</title>
   <meta name="description" content="Invitación digital con cuenta regresiva para la fiesta" />
+  <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg:#f6faff;             /* fondo muy suave */
+      --bg:#f6faff;             /* fondo base muy suave */
       --card:#ffffff;            /* tarjetas */
       --text:#0e1b2a;            /* texto principal */
       --muted:#5b6b7b;           /* texto secundario */
@@ -24,11 +26,25 @@
     }
     *{box-sizing:border-box}
     html,body{height:100%}
+
+    /* ✅ ÚNICA regla body (imagen + degradados) */
     body{
-      margin:0; font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-      color:var(--text); background: radial-gradient(1200px 600px at 80% -100px, var(--primary-2), transparent 60%),
-                 radial-gradient(1000px 500px at -10% -120px, #e9f3ff, transparent 65%), var(--bg);
+      margin:0;
+      font-family:"Oswald", sans-serif; /* fuente global */
+      color:var(--text);
+
+      /* Imagen de fondo + degradados superpuestos */
+      background-image:
+        url("castillo.jpg"), /* <- cambia el nombre si tu archivo es otro */
+        radial-gradient(1200px 600px at 80% -100px, var(--primary-2), transparent 60%),
+        radial-gradient(1000px 500px at -10% -120px, #e9f3ff, transparent 65%),
+        linear-gradient(var(--bg), var(--bg));
+      background-size: cover, auto, auto, auto;
+      background-attachment: fixed, scroll, scroll, scroll;
+      background-position: center, center, center, center;
+      background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
     }
+
     .wrap{ max-width:1000px; margin:0 auto; padding:32px 20px 60px; }
     header{
       display:grid; grid-template-columns: 1.1fr .9fr; gap:24px; align-items:center;
@@ -43,8 +59,17 @@
       background: conic-gradient(from 210deg, rgba(212,175,55,.18), transparent 30%, transparent 70%, rgba(212,175,55,.15));
       filter: blur(18px);
     }
-    .title{ font-size: clamp(28px, 4vw, 44px); line-height:1.1; margin:0 0 8px; font-weight:700; }
-    .subtitle{ margin:0; color:var(--muted); font-weight:400; }
+
+    /* ✅ Títulos con Bonheur Royale */
+    .title{
+      font-family:"Bonheur Royale", cursive;
+      font-weight:400;
+      font-size: clamp(38px, 6vw, 64px);
+      line-height:1.05; margin:0 0 8px;
+      color:#1b1f2a;
+      text-shadow: 0 2px 20px rgba(255,255,255,.35);
+    }
+    .subtitle{ margin:0; color:var(--muted); font-weight:400; font-size: clamp(14px, 2.2vw, 18px); }
 
     .badge{
       display:inline-flex; align-items:center; gap:8px; margin-top:14px; padding:8px 12px; border-radius:999px;
@@ -67,23 +92,6 @@
     .item b{ display:block; font-size:13px; color:#475569; text-transform:uppercase; letter-spacing:.06em }
     .item span{ font-size:18px; font-weight:600 }
 
-    body{
-  margin:0;
-  font-family: "Oswald", sans-serif;  /* o Bonheur Royale para títulos */
-  color:var(--text);
-
-  /* 👇 Aquí mezclamos imagen + degradados */
-  background-image:
-    url("castillo.jpg"), /* tu imagen */
-    radial-gradient(1200px 600px at 80% -100px, var(--primary-2), transparent 60%),
-    radial-gradient(1000px 500px at -10% -120px, #e9f3ff, transparent 65%),
-    var(--bg);
-
-  background-size: cover, auto, auto, auto; 
-  background-attachment: fixed, scroll, scroll, scroll;
-  background-position: center, center, center, center;
-  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
-}
     /* Countdown */
     .countdown{ margin-top:26px; display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; }
     @media (max-width:650px){ .countdown{ grid-template-columns: repeat(2, 1fr);} }
@@ -94,30 +102,23 @@
     .tick:before{ content:""; position:absolute; inset:0; border-radius:16px; padding:1px; background: linear-gradient(120deg, rgba(212,175,55,.6), rgba(142,197,255,.5)); -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
       -webkit-mask-composite: xor; mask-composite: exclude; opacity:.35 }
 
-    .cta{
-      margin-top:22px; display:flex; flex-wrap:wrap; gap:12px;
-    }
-    .btn{
-      appearance:none; border:0; background: linear-gradient(180deg, var(--primary), var(--accent)); color:#fff; padding:12px 18px; border-radius:12px; font-weight:700; cursor:pointer; box-shadow: var(--shadow);
-    }
+    .cta{ margin-top:22px; display:flex; flex-wrap:wrap; gap:12px; }
+    .btn{ appearance:none; border:0; background: linear-gradient(180deg, var(--primary), var(--accent)); color:#fff; padding:12px 18px; border-radius:12px; font-weight:700; cursor:pointer; box-shadow: var(--shadow); }
     .btn.secondary{ background: linear-gradient(180deg, #fff, #f7fbff); color:#0f172a; border:1px solid #e7eef8; font-weight:600 }
 
     footer{ margin-top:36px; color:#6b7a8c; font-size:13px; text-align:center }
     .gold{ color:var(--gold) }
 
-    /* Pequeña animación confeti */
+    /* Confeti */
     canvas#confetti{ position:fixed; inset:0; pointer-events:none; z-index:50; }
   </style>
 </head>
 <body>
   <!--
-    ✨ Cómo personalizar (línea rápida):
-    1) Cambia los datos en CONFIG (abajo en el script): nombre, edad, fecha/hora, lugar, mensajes.
-    2) Reemplaza el src de la imagen por la caricatura de tu sobrino (PNG con fondo blanco/transparente).
-    3) Sube este archivo a cualquier hosting o envíalo por WhatsApp como link (GitHub Pages / Netlify / etc.).
-
-    Tip: también puedes pasar parámetros por URL, por ejemplo:
-    ?title=Cumple%20de%20Adriel&date=2025-10-05T15:00:00&place=Sal%C3%B3n%20Azul
+    ✨ Personaliza rápido:
+    1) Edita CONFIG (abajo): name, title, dateISO, place, details.
+    2) Reemplaza la imagen de <img id="heroImg"> por tu caricatura (PNG/JPG).
+    3) Asegúrate de que castillo.jpg esté en la misma carpeta (o cambia la ruta).
   -->
 
   <canvas id="confetti"></canvas>
@@ -163,17 +164,16 @@
     // CONFIGURACIÓN RÁPIDA
     // ==========================
     const CONFIG = {
-      name: "Adriel",                // Nombre del cumpleañero
-      age: 1,                         // Edad (opcional, solo para el título si quieres)
-      title: "El principe Adriel esta cumpliendo año",   // Título visible
-      // FECHA/HORA de la fiesta (interpreta HORA LOCAL del navegador)
-      dateISO: "2025-09-19T15:00:00", // ← Cambia aquí a tu fecha/hora
-      place: "Aquatic Zone ciudadela la garzota mz 70 solar 22-23",
+      name: "Adriel",
+      age: 1,
+      title: "El príncipe Adriel está cumpliendo años",
+      dateISO: "2025-09-19T15:00:00", // AAAA-MM-DDTHH:MM:SS
+      place: "Aquatic Zone, Cdla. La Garzota, Mz 70, solares 22-23",
       details: "¡Trae tu mejor sonrisa y ganas de jugar!",
-      heroImage: "", // Opcional: pon aquí tu imagen .png/.jpg (si dejas vacío, se mantiene la de ejemplo)
+      heroImage: "", // Si lo pones, reemplaza el <img>
     };
 
-    // Parámetros por URL (opcionales): ?title=...&date=...&place=...&name=...&img=...
+    // Parámetros por URL (opcionales)
     const url = new URL(location.href);
     const qp = (k, fallback=null) => url.searchParams.get(k) ?? fallback;
     if(qp('title')) CONFIG.title = qp('title');
@@ -221,9 +221,8 @@
       confettiBoom();
     }
 
-    // Botón: Agregar a Google Calendar (usa hora local -> convierte a UTC para el link)
+    // Botón: Agregar a Google Calendar (hora local -> UTC)
     function toGCalDate(d){
-      // yyyymmddThhmmssZ en UTC
       const pad = n => String(n).padStart(2,'0');
       const y = d.getUTCFullYear();
       const mo = pad(d.getUTCMonth()+1);
@@ -235,7 +234,7 @@
     }
     $("#btnAddCalendar").addEventListener('click', ()=>{
       const start = target;
-      const end = new Date(target.getTime() + 2*60*60*1000); // +2h por defecto
+      const end = new Date(target.getTime() + 2*60*60*1000); // +2h
       const url = new URL('https://calendar.google.com/calendar/render');
       url.searchParams.set('action','TEMPLATE');
       url.searchParams.set('text', `${CONFIG.title} – ${CONFIG.name}`);
@@ -245,12 +244,12 @@
       window.open(url.toString(), '_blank');
     });
 
-    // Botón: Compartir invitación (Web Share API si soporta, sino copia enlace)
+    // Compartir invitación
     $("#btnShare").addEventListener('click', async ()=>{
       const shareUrl = location.href;
       const text = `${CONFIG.title} de ${CONFIG.name} – ${$("#dateText").textContent} ${$("#timeText").textContent} – ${CONFIG.place}`;
       if(navigator.share){
-        try{ await navigator.share({ title: CONFIG.title, text, url: shareUrl }); }catch(e){ /* cancelado */ }
+        try{ await navigator.share({ title: CONFIG.title, text, url: shareUrl }); }catch(e){}
       } else {
         await navigator.clipboard.writeText(`${text} \n${shareUrl}`);
         alert('¡Enlace copiado! Pégalo en WhatsApp o donde quieras.');
