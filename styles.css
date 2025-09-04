@@ -10,7 +10,7 @@ body{
   min-height: 100%;
   /* Imagen + degradados (se puede mantener tu mezcla) */
   background-image:
-    url("Salon.jpg"),
+    url("Fondo\ 2.jpg"),
     radial-gradient(1200px 600px at 80% -100px, var(--primary-2), transparent 60%),
     radial-gradient(1000px 500px at -10% -120px, #e9f3ff, transparent 65%),
     linear-gradient(var(--bg), var(--bg));
@@ -39,16 +39,15 @@ header.card {
   font-size: 20px;                        /* un poco más grande */
   font-weight: 400;
 }
-  .footer-box{
+.footer-box {
   display: inline-block;
-  padding: 14px 16px;
+  padding: 14px 20px;
   border-radius: var(--radius);
-  border: 2px dashed rgba(212,175,55,.65);   /* usa tu --gold */
-  background: linear-gradient(180deg, #ffffffcc, #f6faffcc); /* translúcido */
+  border: none;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  font-weight: 700;
   box-shadow: var(--shadow);
-  backdrop-filter: blur(6px);
-  color: var(--text);
-  font-weight: 600;
 }
 }
 
