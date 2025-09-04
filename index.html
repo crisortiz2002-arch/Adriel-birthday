@@ -176,12 +176,17 @@
     if(CONFIG.heroImage){ $("#heroImg").src = CONFIG.heroImage; }
 
     // Fecha
-    const target = new Date(CONFIG.dateISO);
-    const fmtDate = new Intl.DateTimeFormat('es-EC', { weekday:'short', day:'2-digit', month:'short', year:'numeric' });
-    const fmtTime = new Intl.DateTimeFormat('es-EC', { hour:'2-digit', minute:'2-digit' });
-    $("#dateText").textContent = fmtDate.format(target).replace(/\.$/,"");
-    $("#timeText").textContent = fmtTime.format(target);
-    $("#placeText").textContent = CONFIG.place;
+// ===== Fecha y hora =====
+const target = new Date(CONFIG.dateISO);
+const endTarget = CONFIG.endISO ? new Date(CONFIG.endISO) : new Date(target.getTime() + 2*60*60*1000);
+
+const fmtDate = new Intl.DateTimeFormat('es-EC', { weekday:'short', day:'2-digit', month:'short', year:'numeric' });
+const fmtTime = new Intl.DateTimeFormat('es-EC', { hour:'2-digit', minute:'2-digit' });
+
+$("#dateText").textContent = fmtDate.format(target).replace(/\.$/,"");
+$("#timeStart").textContent = fmtTime.format(target);
+$("#timeEnd").textContent   = fmtTime.format(endTarget);
+$("#placeText").textContent = CONFIG.place;
 
     /* ==========================
        COUNTDOWN
