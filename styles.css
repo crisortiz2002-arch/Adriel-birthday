@@ -88,6 +88,38 @@ header > *{
   text-align: center;
 }
 .cta{ justify-content: center; }
+/* --- Centrado robusto (gana a todo) --- */
 
+/* Asegura que el contenedor esté centrado */
+div.wrap{
+  max-width: 1000px;
+  margin: 0 auto !important;
+}
+
+/* Centra y fuerza 1 columna en el header */
+div.wrap > header.card.hero{
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 24px !important;
+  justify-items: center !important; /* centra bloques (texto, imagen, etc.) */
+  text-align: center !important;    /* centra el texto */
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Centra la tarjeta de la imagen */
+div.wrap > header.card.hero .art{
+  margin: 0 auto !important;
+  max-width: 340px; /* opcional */
+}
+
+/* Centra los botones */
+div.wrap > header.card.hero .cta{
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center !important;
+}
 }
 
