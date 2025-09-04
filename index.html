@@ -36,7 +36,7 @@
     .page-bg{
       min-height: 100%;
       background-image:
-        url("Fondo 2.jpg"),
+        url("Salon.jpg"),
         radial-gradient(1200px 600px at 80% -100px, var(--primary-2), transparent 60%),
         radial-gradient(1000px 500px at -10% -120px, #e9f3ff, transparent 65%),
         linear-gradient(var(--bg), var(--bg));
@@ -112,13 +112,19 @@
     <div class="wrap">
       <header class="card hero">
         <div>
-          <h1 class="title"><span id="title">Fiesta de Príncipe Adriel</span></h1>
+          <h1 class="title">🎉 <span id="title">Fiesta de Príncipe Adriel</span></h1>
           <p class="subtitle">¡Acompáñanos a celebrar este día especial! 👑✨</p>
           <div class="badge"><span class="dot"></span> <span id="badge">Cuenta regresiva en vivo</span></div>
- 
+
           <div class="info">
             <div class="item"><b>Fecha</b><span id="dateText">Viernes 19 de septiembre 2025</span></div>
-            <span id="timeText">17:00</span> a <span id="endTimeText">21:00</span>
+
+            <!-- HORA: ahora con rango inicio a fin -->
+            <div class="item">
+              <b>Hora</b>
+              <span><span id="timeStart">–</span> a <span id="timeEnd">–</span></span>
+            </div>
+
             <div class="item"><b>Lugar</b><span id="placeText">Salón Azul, Guayaquil</span></div>
           </div>
 
@@ -147,13 +153,11 @@
         </a>
       </div>
 
- <footer>
-  <div style="display:flex; justify-content:center;">
-    <div class="footer-box" style="width:100%; max-width:720px;">
-      💙 Hecho con cariño para la fiesta de <span class="gold" id="nameFooter">Adriel</span> · #CrownPrince
+      <footer>
+        Hecho con cariño para la fiesta de <span class="gold" id="nameFooter">Adriel</span> · #CrownPrince
+      </footer>
     </div>
   </div>
-</footer>
 
   <script>
     /* ==========================
@@ -162,7 +166,8 @@
     const CONFIG = {
       name: "Adriel",
       title: "El príncipe Adriel está cumpliendo años",
-      dateISO: "2025-09-19T15:00:00",
+      dateISO: "2025-09-19T17:00:00",  // ⏰ inicio real
+      endISO:  "2025-09-19T21:00:00",  // ⏰ fin real
       place: "Aquatic Zone, Cdla. La Garzota, Mz 70, solares 22-23",
       details: "¡Trae tu mejor sonrisa y ganas de jugar!",
       heroImage: "",
@@ -175,18 +180,19 @@
     $("#nameFooter").textContent = CONFIG.name;
     if(CONFIG.heroImage){ $("#heroImg").src = CONFIG.heroImage; }
 
-    // Fecha
-// ===== Fecha y hora =====
-const target = new Date(CONFIG.dateISO);
-const endTarget = CONFIG.endISO ? new Date(CONFIG.endISO) : new Date(target.getTime() + 2*60*60*1000);
+    /* ==========================
+       FECHA Y HORA (rango)
+    ========================== */
+    const target = new Date(CONFIG.dateISO);
+    const endTarget = CONFIG.endISO ? new Date(CONFIG.endISO) : new Date(target.getTime() + 2*60*60*1000);
 
-const fmtDate = new Intl.DateTimeFormat('es-EC', { weekday:'short', day:'2-digit', month:'short', year:'numeric' });
-const fmtTime = new Intl.DateTimeFormat('es-EC', { hour:'2-digit', minute:'2-digit' });
+    const fmtDate = new Intl.DateTimeFormat('es-EC', { weekday:'short', day:'2-digit', month:'short', year:'numeric' });
+    const fmtTime = new Intl.DateTimeFormat('es-EC', { hour:'2-digit', minute:'2-digit' });
 
-$("#dateText").textContent = fmtDate.format(target).replace(/\.$/,"");
-$("#timeStart").textContent = fmtTime.format(target);
-$("#timeEnd").textContent   = fmtTime.format(endTarget);
-$("#placeText").textContent = CONFIG.place;
+    $("#dateText").textContent = fmtDate.format(target).replace(/\.$/,"");
+    $("#timeStart").textContent = fmtTime.format(target);
+    $("#timeEnd").textContent   = fmtTime.format(endTarget);
+    $("#placeText").textContent = CONFIG.place;
 
     /* ==========================
        COUNTDOWN
@@ -222,7 +228,7 @@ $("#placeText").textContent = CONFIG.place;
     }
 
     /* ==========================
-       GOOGLE CALENDAR
+       GOOGLE CALENDAR (con fin real)
     ========================== */
     function toGCalDate(d){
       const pad = n => String(n).padStart(2,'0');
@@ -230,23 +236,25 @@ $("#placeText").textContent = CONFIG.place;
     }
 
     $("#btnAddCalendar").addEventListener('click', ()=>{
-      const start = target;
-      const end = new Date(target.getTime() + 2*60*60*1000);
+      const start = new Date(CONFIG.dateISO);
+      const end   = CONFIG.endISO ? new Date(CONFIG.endISO) : new Date(start.getTime() + 2*60*60*1000);
+
       const u = new URL('https://calendar.google.com/calendar/render');
       u.searchParams.set('action','TEMPLATE');
       u.searchParams.set('text', `${CONFIG.title} – ${CONFIG.name}`);
       u.searchParams.set('dates', `${toGCalDate(start)}/${toGCalDate(end)}`);
       u.searchParams.set('details', CONFIG.details);
       u.searchParams.set('location', CONFIG.place);
+
       window.open(u.toString(), '_blank');
     });
 
     /* ==========================
-       COMPARTIR
+       COMPARTIR (usa rango)
     ========================== */
     $("#btnShare").addEventListener('click', async ()=>{
       const shareUrl = location.href;
-      const text = `${CONFIG.title} de ${CONFIG.name} – ${$("#dateText").textContent} ${$("#timeText").textContent} – ${CONFIG.place}`;
+      const text = `${CONFIG.title} de ${CONFIG.name} – ${$("#dateText").textContent} ${$("#timeStart").textContent} a ${$("#timeEnd").textContent} – ${CONFIG.place}`;
       if(navigator.share){
         try{ await navigator.share({ title: CONFIG.title, text, url: shareUrl }); }catch(e){}
       } else {
