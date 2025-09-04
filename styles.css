@@ -50,9 +50,11 @@ header.card {
 }
 header {
   display: grid;
-  grid-template-columns: 1fr; /* ahora siempre una sola columna */
+  grid-template-columns: 1fr; /* 👉 siempre una sola columna */
   gap: 24px;
   align-items: center;
+  text-align: center; /* centra texto y botones */
+  justify-items: center; /* centra bloques internos */
 }
 }
 
