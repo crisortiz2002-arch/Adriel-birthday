@@ -4,7 +4,15 @@ body{
   font-family:"Oswald", sans-serif;
   color:var(--text);
 }
-
+.title {
+  font-family:"Bonheur Royale", cursive;
+  font-size: clamp(38px, 6vw, 64px);
+  font-weight:400; /* no cambia porque la fuente no tiene más pesos */
+  color:#1b1f2a;
+  text-shadow: 
+    0 0 1px #1b1f2a,
+    0 0 2px #1b1f2a; /* crea un efecto de más grosor */
+  }
 /* Contenedor que lleva el fondo y crece con el contenido */
 .page-bg{
   min-height: 100%;
@@ -60,5 +68,6 @@ header > * {
   justify-self:center;
   text-align:center;
 }
+
 }
 
