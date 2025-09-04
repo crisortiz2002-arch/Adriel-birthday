@@ -14,14 +14,6 @@ body{
     0 0 2px #1b1f2a; /* crea un efecto de más grosor */
  /* }*/
 /* Contenedor que lleva el fondo y crece con el contenido */
-.title {
-  font-family:"Dancing Script", cursive;
-  font-weight:700; /* ahora sí se aplica grosor */
-  font-size: clamp(38px, 6vw, 64px);
-  line-height:1.1;
-  margin:0 0 8px;
-  color:#1b1f2a;
-}
 
 .page-bg{
   min-height: 100%;
@@ -82,5 +74,14 @@ header > *{
   text-align: center;
 }
 .cta{ justify-content: center; }
+.title {
+  font-family:"Dancing Script", cursive;
+  font-weight:700; /* ahora sí se aplica grosor */
+  font-size: clamp(38px, 6vw, 64px);
+  line-height:1.1;
+  margin:0 0 8px;
+  color:#1b1f2a;
+}
+
 }
 
