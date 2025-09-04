@@ -103,6 +103,32 @@
     .gold{ color:var(--gold) }
 
     canvas#confetti{ position:fixed; inset:0; pointer-events:none; z-index:50; }
+    /* === Fix de centrado (columna única y todo al medio) === */
+.wrap{
+  max-width: 1000px;
+  margin: 0 auto !important;           /* centra el contenedor */
+  display: flex;
+  flex-direction: column;
+  align-items: center;                  /* centra los hijos */
+}
+
+header{
+  display: grid !important;
+  grid-template-columns: 1fr !important;/* fuerza 1 columna en escritorio también */
+  gap: 24px;
+  justify-items: center !important;     /* centra bloques internos */
+  text-align: center !important;        /* centra los textos */
+  width: 100%;
+}
+
+.art{
+  margin: 0 auto;                       /* centra la tarjeta de la imagen */
+  max-width: 340px;                     /* opcional */
+}
+
+.cta{
+  justify-content: center !important;   /* centra los botones */
+}
   </style>
 </head>
 <body>
