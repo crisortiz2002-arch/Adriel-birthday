@@ -56,5 +56,9 @@ header {
   text-align: center; /* centra texto y botones */
   justify-items: center; /* centra bloques internos */
 }
+header > * {
+  justify-self:center;
+  text-align:center;
+}
 }
 
