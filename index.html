@@ -115,7 +115,9 @@
           <h1 class="title"> <span id="title">Fiesta de Príncipe Adriel</span></h1>
           <p class="subtitle">¡Acompáñanos a celebrar este día especial! 👑✨</p>
           <div class="badge"><span class="dot"></span> <span id="badge">Cuenta regresiva en vivo</span></div>
-
+          <div class="card art">
+          <img id="heroImg" alt="Caricatura del príncipe" src="./Adriel.png" />
+        </div>
           <div class="info">
             <div class="item"><b>Fecha</b><span id="dateText">Viernes 19 de septiembre 2025</span></div>
 
@@ -141,9 +143,7 @@
           </div>
         </div>
 
-        <div class="card art">
-          <img id="heroImg" alt="Caricatura del príncipe" src="./Adriel.png" />
-        </div>
+        
         <div class="btn third" style="justify-content:left; margin-top:24px;">
         <a href="https://www.google.com/maps?q=-2.1461033821106,-79.8897247314453"
            target="_blank" rel="noopener noreferrer" class="btn">
@@ -190,7 +190,7 @@
     const endTarget = CONFIG.endISO ? new Date(CONFIG.endISO) : new Date(target.getTime() + 2*60*60*1000);
 
     const fmtDate = new Intl.DateTimeFormat('es-EC', { weekday:'short', day:'2-digit', month:'short', year:'numeric' });
-    const fmtTime = new Intl.DateTimeFormat('es-EC', { hour:'2-digit', minute:'2-digit' });
+    const fmtTime = new Intl.DateTimeFormat('es-EC', { hour:'2-digit', minute:'2-digit', hour12: false  });
 
     $("#dateText").textContent = fmtDate.format(target).replace(/\.$/,"");
     $("#timeStart").textContent = fmtTime.format(target);

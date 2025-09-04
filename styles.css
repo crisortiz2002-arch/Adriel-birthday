@@ -48,5 +48,11 @@ header.card {
   box-shadow: var(--shadow);       /* sombrita elegante */
   font-weight: 600;
 }
+header {
+  display: grid;
+  grid-template-columns: 1fr; /* ahora siempre una sola columna */
+  gap: 24px;
+  align-items: center;
+}
 }
 
