@@ -77,6 +77,10 @@ header > * {
   justify-self:center;
   text-align:center;
 }
-
+header > *{
+  justify-self: center;
+  text-align: center;
+}
+.cta{ justify-content: center; }
 }
 
